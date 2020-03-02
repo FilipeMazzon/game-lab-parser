@@ -1,4 +1,4 @@
-require('parser/prototypes/array.prototype');
+require('../prototypes/array.prototype');
 const getAllAndIgnoreCaseFlag = 'gi';
 const getInitialGameArray = (roughFile) => {
     const pattern = 'initGame';

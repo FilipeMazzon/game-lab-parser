@@ -1,5 +1,5 @@
 const FileUtil = require('./utils/file.util');
-const ParserHelper = require('parser/helpers/parser.helper');
+const ParserHelper = require('./helpers/parser.helper');
 
 const pathFile = process.env.PATH_FILE || './games.log';
 
