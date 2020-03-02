@@ -7,5 +7,5 @@ const pathFile = process.env.PATH_FILE || './games.log';
     const roughFile = await FileUtil.getRoughFile(pathFile);
     const initialGamesArray = ParserHelper.getInitialGameArray(roughFile);
     const games = ParserHelper.cleanGamesToEndGame(initialGamesArray);
-
+    console.log(games)
 })();
