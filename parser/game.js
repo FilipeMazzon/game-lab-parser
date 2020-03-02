@@ -2,7 +2,7 @@ const GameHelper = require('./helpers/game.helper');
 const INITIAL_KILLS = 0;
 const KILL_POINT = 1;
 const DEATH_POINT = -1;
-const WORLD = '<world>';
+
 
 //in this moment can't be done private methods in class syntax;
 function Game(numberGame) {
@@ -20,9 +20,7 @@ function Game(numberGame) {
     };
 
     const playerKillSomeone = (player) => {
-        if (player !== WORLD) {
-            changeScoreOfPlayer(player, KILL_POINT)
-        }
+        changeScoreOfPlayer(player, KILL_POINT)
     };
 
     const playerWasKilled = (player) => {
@@ -35,13 +33,21 @@ function Game(numberGame) {
         }
     };
 
-    const updateScores = (playerKiller, playerKilled) => {
-        increaseTotalOfKills();
-        if (!GameHelper.isSuicide(playerKiller, playerKilled)) {
-            playerKillSomeone(playerKiller);
-            playerWasKilled(playerKilled);
+    const updatePlayersScore = (playerKiller, playerKilled) => {
+        if (GameHelper.isNotSuicide(playerKiller, playerKilled)) {
+            if (GameHelper.wasNotWorldWhoKilled(playerKiller)) {
+                playerKillSomeone(playerKiller);
+            } else {
+                playerWasKilled(playerKilled);
+            }
         }
     };
+
+    const kill = (playerKiller, playerKilled) => {
+        increaseTotalOfKills();
+        updatePlayersScore(playerKiller, playerKilled)
+    };
+
     const build = () => {
         return {
             number: numberGame,
@@ -51,7 +57,7 @@ function Game(numberGame) {
     };
     return {
         playerJoinTheGame,
-        updateScores,
+        updateScores: kill,
         build,
     };
 }
