@@ -14,7 +14,9 @@ function Game(numberGame) {
     };
 
     const changeScoreOfPlayer = (player, point) => {
-        this.score.set(player, this.score.get(player) + point);
+        const scoreValue = this.score.get(player);
+        const previousScore = scoreValue ? scoreValue : 0;
+        this.score.set(player, previousScore + point);
     };
 
     const playerKillSomeone = (player) => {
