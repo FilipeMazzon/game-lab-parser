@@ -57,7 +57,7 @@ function Game(numberGame) {
     };
     return {
         playerJoinTheGame,
-        updateScores: kill,
+        kill,
         build,
     };
 }
